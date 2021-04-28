@@ -15,6 +15,13 @@ app.get('/users', async (req, res) => {
   res.send(users);
 })
 
+app.post('/users', async (req, res) => {
+  const name = req.body.name;
+  const email = req.body.email;
+  await db.none(`INSERT INTO users (name, email) VALUES ($1, $2);`, [name, email])
+  res.send('user created');
+})
+
 app.get('/comments', async (req, res) => {
   const comments = await db.any("SELECT * FROM comments").then((comments) => {
     return comments;

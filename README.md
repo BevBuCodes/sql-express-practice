@@ -5,10 +5,10 @@ We'll be using the same databases from previous exercises to create API endpoint
 ## Round 1
 
 For this round, you can stay here on the `main` branch
-
+<!-- The commented out numbers are complete.
 1. Create a GET endpoint that returns all Users
 2. Create a GET endpoint that returns all Comments
-3. Create a POST endpoint that allows you to create a User
+3. Create a POST endpoint that allows you to create a User -->
 4. Create a POST endpoint that allows you to create a Comment
 5. Create a PUT endpoint that allows you to update a User
 6. Create a PUT endpoint that allows you to update a Comment
