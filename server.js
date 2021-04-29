@@ -29,7 +29,13 @@ app.get('/comments', async (req, res) => {
   res.send(comments);
 })
 
-
+app.post('/comments', async (req, res) => {
+  const id = req.params.id
+  const comment = req.body.comment;
+  
+  await db.any(`INSERT INTO comments (comment) VALUES ($1, $2);`, [comment])
+  res.send('comment created');
+})
 
 app.listen(PORT, () => {
   console.log(`LikeyPix API is running on port ${PORT}`);
