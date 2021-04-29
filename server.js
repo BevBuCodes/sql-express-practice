@@ -22,6 +22,16 @@ app.post('/users', async (req, res) => {
   res.send('user created');
 })
 
+app.put('/users/:id', async (req, res) => {
+  const id = req.params.id;
+  const name = req.body.name;
+  const email = req.body.email;
+
+  await db.none(`UPDATE users SET name = $1, email = $2 WHERE id= $3`, [name, email, id]);
+
+  res.send('user updated');
+})
+
 app.get('/comments', async (req, res) => {
   const comments = await db.any("SELECT * FROM comments").then((comments) => {
     return comments;
