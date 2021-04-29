@@ -10,8 +10,8 @@ For this round, you can stay here on the `main` branch
 2. Create a GET endpoint that returns all Comments
 3. Create a POST endpoint that allows you to create a User
 4. Create a POST endpoint that allows you to create a Comment
-5. Create a PUT endpoint that allows you to update a User -->
-6. Create a PUT endpoint that allows you to update a Comment
+5. Create a PUT endpoint that allows you to update a User
+6. Create a PUT endpoint that allows you to update a Comment -->
 7. Create a GET endpoint that allows you to retrieve a User's Comments
 
 ## Round 2

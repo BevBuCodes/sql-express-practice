@@ -40,11 +40,19 @@ app.get('/comments', async (req, res) => {
 })
 
 app.post('/comments', async (req, res) => {
-  const id = req.params.id
   const comment = req.body.comment;
   
-  await db.any(`INSERT INTO comments (comment) VALUES ($1, $2);`, [comment])
+  await db.any(`INSERT INTO comments (comment) VALUES ($1);`, [comment])
   res.send('comment created');
+})
+
+app.put('/comments/:id', async (req, res) => {
+  const id = req.params.id;
+  const comment = req.body.comment;
+
+  await db.none(`UPDATE comments SET comment = $1 WHERE id= $2`, [comment, id]);
+
+  res.send('comment updated');
 })
 
 app.listen(PORT, () => {
