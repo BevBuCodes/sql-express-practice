@@ -55,6 +55,15 @@ app.put('/comments/:id', async (req, res) => {
   res.send('comment updated');
 })
 
+
+app.get('/users/comments', async (req, res) => {
+  const id = req.body.id;
+  const comments = await db.any('SELECT comment FROM comments WHERE user_id = $1', [id]).then((comments) =>{
+    return comments;
+  });
+  res.send(comments);
+})
+
 app.listen(PORT, () => {
   console.log(`LikeyPix API is running on port ${PORT}`);
 });
