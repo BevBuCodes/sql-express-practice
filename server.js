@@ -16,9 +16,9 @@ app.get('/classes', async(req, res) => {
   res.send(classes);
 })
 
-app.get('/classes/teachers/:id', async(req, res) => {
+app.get('/classes/:id', async(req, res) => {
   const id = req.params.id;
-  const classes = await db.any("SELECT * from classes" + "JOIN class_teacher ON classes.id = class_teacher.class_id" + "WHERE class_teacher.teacher_id = 1;", [id]).then((classes) => {
+  const classes = await db.one("SELECT * from classes WHERE id = $1;", [id]).then((classes) => {
     return classes;
   })
   res.send(classes);
@@ -49,7 +49,13 @@ app.get('/teachers', async(req, res) => {
 })
 
 
-
+app.get('/teachers/classes/:id', async(req, res) => {
+  const teacherId = req.params.id;
+  const classes = await db.any("SELECT * from classes " + "JOIN class_teacher ON classes.id = class_teacher.class_id " + "WHERE class_teacher.teacher_id = 1;", [teacherId]).then((classes) => {
+    return classes;
+  })
+  res.send(classes);
+})
 
 
 app.listen(PORT, () => {
