@@ -40,6 +40,14 @@ app.get('/students/classes/:id', async(req, res) => {
   res.send(students);
 })
 
+app.get('/students/:id', async(req, res) => {
+  const id = req.params.id;
+  const students = await db.one("SELECT * from students WHERE id = $1;", [id]).then((students) => {
+    return students;
+  })
+  res.send(students);
+})
+
 
 app.get('/teachers', async(req, res) => {
   const teachers = await db.any("SELECT * from teachers").then((teachers) => {
